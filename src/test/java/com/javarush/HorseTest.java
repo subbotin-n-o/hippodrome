@@ -7,21 +7,23 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class HorseTest {
 
     GeneratorRandomDate randomDate = new GeneratorRandomDate();
 
     @Test
     @DisplayName("Check exception when first parameter is null")
-    public void A_CheckExcWhenFirstParamIsNull() {
+    @Order(1)
+    public void CheckExcWhenFirstParamIsNull() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(null, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
     }
 
     @Test
     @DisplayName("Check exception message when first parameter is null")
-    public void B_CheckExcMessageWhenFirstParamIsNull() {
+    @Order(2)
+    public void CheckExcMessageWhenFirstParamIsNull() {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(null, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
 
@@ -34,7 +36,8 @@ public class HorseTest {
     @ParameterizedTest
     @DisplayName("Check exception when first parameter is empty")
     @ValueSource(strings = { "", "  "})
-    public void C_CheckExcWhenFirstParamIsEmpty(String horseName) {
+    @Order(3)
+    public void CheckExcWhenFirstParamIsEmpty(String horseName) {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(horseName, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
     }
@@ -42,7 +45,8 @@ public class HorseTest {
     @ParameterizedTest
     @DisplayName("Check exception message when first parameter is empty")
     @ValueSource(strings = { "", "  "})
-    public void D_CheckExcMessageWhenFirstParamIsEmpty(String horseName) {
+    @Order(4)
+    public void CheckExcMessageWhenFirstParamIsEmpty(String horseName) {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(horseName, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
 
@@ -54,14 +58,16 @@ public class HorseTest {
 
     @Test
     @DisplayName("Check exception when second parameter negative number")
-    public void E_CheckExcWhenSecondParamNegativeNumber() {
+    @Order(5)
+    public void CheckExcWhenSecondParamNegativeNumber() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomNegativeNumber(), randomDate.getRandomPositiveNumber()));
     }
 
     @Test
     @DisplayName("Check exception message when second parameter negative number")
-    public void F_CheckExcMessageWhenSecondParamNegativeNumber() {
+    @Order(6)
+    public void CheckExcMessageWhenSecondParamNegativeNumber() {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomNegativeNumber(), randomDate.getRandomPositiveNumber()));
 
@@ -73,14 +79,16 @@ public class HorseTest {
 
     @Test
     @DisplayName("Check exception when third parameter negative number")
-    public void G_CheckExcWhenThirdParamNegativeNumber() {
+    @Order(7)
+    public void CheckExcWhenThirdParamNegativeNumber() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomNegativeNumber()));
     }
 
     @Test
     @DisplayName("Check exception message when third parameter negative number")
-    public void H_CheckExcMessageWhenThirdParamNegativeNumber() {
+    @Order(8)
+    public void CheckExcMessageWhenThirdParamNegativeNumber() {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomNegativeNumber()));
 
