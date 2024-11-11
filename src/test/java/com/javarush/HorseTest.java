@@ -97,4 +97,18 @@ public class HorseTest {
 
         assertEquals(expectedMessage, actualMessage);
     }
+
+
+
+    @Test
+    @DisplayName("getName() return first parameter of constructor")
+    @Order(9)
+    public void getNameReturnFirstParamOfConstr() {
+
+        String expectedName = randomDate.getRandomName();
+        String actualName = new Horse(expectedName, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber())
+                .getName();
+
+        assertEquals(expectedName, actualName);
+    }
 }
