@@ -58,4 +58,16 @@ public class HorseTest {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomNegativeNumber(), randomDate.getRandomPositiveNumber()));
     }
+
+    @Test
+    @DisplayName("Check exception message when second parameter negative number")
+    public void F_CheckExcMessageWhenSecondParamNegativeNumber() {
+        Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
+                new Horse(randomDate.getRandomName(), randomDate.getRandomNegativeNumber(), randomDate.getRandomPositiveNumber()));
+
+        String expectedMessage = "Speed cannot be negative.";
+        String actualMessage = exceptionMessage.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+    }
 }
