@@ -70,4 +70,23 @@ public class HorseTest {
 
         assertEquals(expectedMessage, actualMessage);
     }
+
+    @Test
+    @DisplayName("Check exception when third parameter negative number")
+    public void G_CheckExcWhenThirdParamNegativeNumber() {
+        assertThrows(IllegalArgumentException.class, () ->
+                new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomNegativeNumber()));
+    }
+
+    @Test
+    @DisplayName("Check exception message when third parameter negative number")
+    public void H_CheckExcMessageWhenThirdParamNegativeNumber() {
+        Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
+                new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomNegativeNumber()));
+
+        String expectedMessage = "Distance cannot be negative.";
+        String actualMessage = exceptionMessage.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+    }
 }
