@@ -16,17 +16,17 @@ public class HorseTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Check exception when first parameter is null")
+    @DisplayName("Check exception, when first parameter of constructor is null")
     @Order(1)
-    public void checkExcWhenFirstParamIsNull() {
+    public void checkExcWhenFirstParamConstrIsNull() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(null, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
     }
 
     @Test
-    @DisplayName("Check exception message when first parameter is null")
+    @DisplayName("Check exception message, when first parameter of constructor is null")
     @Order(2)
-    public void checkExcMessageWhenFirstParamIsNull() {
+    public void checkExcMessageWhenFirstParamConstrIsNull() {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(null, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
 
@@ -37,19 +37,19 @@ public class HorseTest extends BaseTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Check exception when first parameter is empty")
+    @DisplayName("Check exception, when first parameter of constructor is empty")
     @ValueSource(strings = {"", "  "})
     @Order(3)
-    public void checkExcWhenFirstParamIsEmpty(String horseName) {
+    public void checkExcWhenFirstParamConstrIsEmpty(String horseName) {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(horseName, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
     }
 
     @ParameterizedTest
-    @DisplayName("Check exception message when first parameter is empty")
+    @DisplayName("Check exception message, when first parameter of constructor is empty")
     @ValueSource(strings = {"", "  "})
     @Order(4)
-    public void checkExcMessageWhenFirstParamIsEmpty(String horseName) {
+    public void checkExcMessageWhenFirstParamConstrIsEmpty(String horseName) {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(horseName, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
 
@@ -60,17 +60,17 @@ public class HorseTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Check exception when second parameter negative number")
+    @DisplayName("Check exception, when second parameter of constructor negative number")
     @Order(5)
-    public void checkExcWhenSecondParamNegativeNumber() {
+    public void checkExcWhenSecondParamConstrNegativeNumber() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomNegativeNumber(), randomDate.getRandomPositiveNumber()));
     }
 
     @Test
-    @DisplayName("Check exception message when second parameter negative number")
+    @DisplayName("Check exception message, when second parameter of constructor negative number")
     @Order(6)
-    public void checkExcMessageWhenSecondParamNegativeNumber() {
+    public void checkExcMessageWhenSecondParamConstrNegativeNumber() {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomNegativeNumber(), randomDate.getRandomPositiveNumber()));
 
@@ -81,17 +81,17 @@ public class HorseTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Check exception when third parameter negative number")
+    @DisplayName("Check exception, when third parameter of constructor negative number")
     @Order(7)
-    public void checkExcWhenThirdParamNegativeNumber() {
+    public void checkExcWhenThirdParamConstrNegativeNumber() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomNegativeNumber()));
     }
 
     @Test
-    @DisplayName("Check exception message when third parameter negative number")
+    @DisplayName("Check exception message, when third parameter of constructor negative number")
     @Order(8)
-    public void checkExcMessageWhenThirdParamNegativeNumber() {
+    public void checkExcMessageWhenThirdParamConstrNegativeNumber() {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomNegativeNumber()));
 
