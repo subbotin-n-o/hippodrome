@@ -46,4 +46,19 @@ public class HippodromeTest extends BaseTest {
         assertThrows(IllegalArgumentException.class, () ->
                 new Hippodrome(emptyList));
     }
+
+    @Test
+    @DisplayName("Check exception message, when parameter of constructor empty List")
+    @Order(4)
+    public void checkExcMessageWhenParamConstrEmptyList() {
+        List<Horse> emptyList = new ArrayList<>();
+
+        Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
+                new Hippodrome(emptyList));
+
+        String expectedMessage = "Horses cannot be empty.";
+        String actualMessage = exceptionMessage.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+    }
 }
