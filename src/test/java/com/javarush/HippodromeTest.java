@@ -5,8 +5,7 @@ import org.junit.jupiter.api.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class HippodromeTest extends BaseTest {
@@ -60,5 +59,25 @@ public class HippodromeTest extends BaseTest {
         String actualMessage = exceptionMessage.getMessage();
 
         assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    @DisplayName("getHorses return list equal to list from constructor")
+    @Order(5)
+    public void getHorsesReturnListEqualsListFromConstr() {
+        List<Horse> expectedResult = getHorseList();
+        List<Horse> actualResult = new Hippodrome(expectedResult).getHorses();
+
+        for (int i = 0; i < expectedResult.size(); i++) {
+            assertEquals(expectedResult.get(i), actualResult.get(i));
+        }
+    }
+
+    private List<Horse> getHorseList() {
+        List<Horse> horsesList = new ArrayList<>();
+        for (int i = 0; i < 30; i++) {
+            horsesList.add(new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
+        }
+        return horsesList;
     }
 }
