@@ -12,11 +12,11 @@ public class GeneratorRandomDate {
                 .dragon();
     }
 
-    public double getRandomSpeed() {
+    public double getRandomPositiveNumber() {
         return Math.random();
     }
 
-    public double getRandomDistance() {
-        return Math.random();
+    public double getRandomNegativeNumber() {
+        return Math.random() * -1;
     }
 }
