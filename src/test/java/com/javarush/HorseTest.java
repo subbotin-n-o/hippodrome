@@ -134,4 +134,16 @@ public class HorseTest {
 
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    @DisplayName("getDistance() return zero if constructor with two parameters")
+    @Order(12)
+    public void getDistanceConstrTwoParamReturnZero() {
+
+        double expectedResult = 0;
+        double actualResult = new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber())
+                .getDistance();
+
+        assertEquals(expectedResult, actualResult);
+    }
 }
