@@ -110,4 +110,28 @@ public class HorseTest {
         assertEquals(expectedResult, actualResult);
     }
 
+
+    @Test
+    @DisplayName("getSpeed() return second parameter of constructor")
+    @Order(10)
+    public void getSpeedReturnSecondParamOfConstr() {
+
+        double expectedResult = randomDate.getRandomPositiveNumber();
+        double actualResult = new Horse(randomDate.getRandomName(), expectedResult, randomDate.getRandomPositiveNumber())
+                .getSpeed();
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    @DisplayName("getDistance() return third parameter of constructor")
+    @Order(11)
+    public void getDistanceReturnThirdParamOfConstr() {
+
+        double expectedResult = randomDate.getRandomPositiveNumber();
+        double actualResult = new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), expectedResult)
+                .getDistance();
+
+        assertEquals(expectedResult, actualResult);
+    }
 }
