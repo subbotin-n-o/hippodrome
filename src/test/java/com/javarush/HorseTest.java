@@ -8,9 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class HorseTest {
+public class HorseTest extends BaseTest {
 
-    GeneratorRandomDate randomDate = new GeneratorRandomDate();
+    @BeforeEach
+    public void initGeneratorRandomDate() {
+        randomDate = new GeneratorRandomDate();
+    }
 
     @Test
     @DisplayName("Check exception when first parameter is null")
@@ -35,7 +38,7 @@ public class HorseTest {
 
     @ParameterizedTest
     @DisplayName("Check exception when first parameter is empty")
-    @ValueSource(strings = { "", "  "})
+    @ValueSource(strings = {"", "  "})
     @Order(3)
     public void checkExcWhenFirstParamIsEmpty(String horseName) {
         assertThrows(IllegalArgumentException.class, () ->
@@ -44,7 +47,7 @@ public class HorseTest {
 
     @ParameterizedTest
     @DisplayName("Check exception message when first parameter is empty")
-    @ValueSource(strings = { "", "  "})
+    @ValueSource(strings = {"", "  "})
     @Order(4)
     public void checkExcMessageWhenFirstParamIsEmpty(String horseName) {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
