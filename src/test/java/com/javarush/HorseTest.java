@@ -15,7 +15,7 @@ public class HorseTest {
     @Test
     @DisplayName("Check exception when first parameter is null")
     @Order(1)
-    public void CheckExcWhenFirstParamIsNull() {
+    public void checkExcWhenFirstParamIsNull() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(null, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
     }
@@ -23,7 +23,7 @@ public class HorseTest {
     @Test
     @DisplayName("Check exception message when first parameter is null")
     @Order(2)
-    public void CheckExcMessageWhenFirstParamIsNull() {
+    public void checkExcMessageWhenFirstParamIsNull() {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(null, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
 
@@ -37,7 +37,7 @@ public class HorseTest {
     @DisplayName("Check exception when first parameter is empty")
     @ValueSource(strings = { "", "  "})
     @Order(3)
-    public void CheckExcWhenFirstParamIsEmpty(String horseName) {
+    public void checkExcWhenFirstParamIsEmpty(String horseName) {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(horseName, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
     }
@@ -46,7 +46,7 @@ public class HorseTest {
     @DisplayName("Check exception message when first parameter is empty")
     @ValueSource(strings = { "", "  "})
     @Order(4)
-    public void CheckExcMessageWhenFirstParamIsEmpty(String horseName) {
+    public void checkExcMessageWhenFirstParamIsEmpty(String horseName) {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(horseName, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
 
@@ -59,7 +59,7 @@ public class HorseTest {
     @Test
     @DisplayName("Check exception when second parameter negative number")
     @Order(5)
-    public void CheckExcWhenSecondParamNegativeNumber() {
+    public void checkExcWhenSecondParamNegativeNumber() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomNegativeNumber(), randomDate.getRandomPositiveNumber()));
     }
@@ -67,7 +67,7 @@ public class HorseTest {
     @Test
     @DisplayName("Check exception message when second parameter negative number")
     @Order(6)
-    public void CheckExcMessageWhenSecondParamNegativeNumber() {
+    public void checkExcMessageWhenSecondParamNegativeNumber() {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomNegativeNumber(), randomDate.getRandomPositiveNumber()));
 
@@ -80,7 +80,7 @@ public class HorseTest {
     @Test
     @DisplayName("Check exception when third parameter negative number")
     @Order(7)
-    public void CheckExcWhenThirdParamNegativeNumber() {
+    public void checkExcWhenThirdParamNegativeNumber() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomNegativeNumber()));
     }
@@ -88,7 +88,7 @@ public class HorseTest {
     @Test
     @DisplayName("Check exception message when third parameter negative number")
     @Order(8)
-    public void CheckExcMessageWhenThirdParamNegativeNumber() {
+    public void checkExcMessageWhenThirdParamNegativeNumber() {
         Exception exceptionMessage = assertThrows(IllegalArgumentException.class, () ->
                 new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomNegativeNumber()));
 
