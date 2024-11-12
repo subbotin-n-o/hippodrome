@@ -1,6 +1,10 @@
 package com.javarush;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@ExtendWith(MockitoExtension.class)
 public class HippodromeTest extends BaseTest {
 
     @BeforeEach
@@ -65,7 +70,10 @@ public class HippodromeTest extends BaseTest {
     @DisplayName("getHorses return list equal to list from constructor")
     @Order(5)
     public void getHorsesReturnListEqualsListFromConstr() {
-        List<Horse> expectedResult = getHorseList();
+        List<Horse> expectedResult = getHorseList(new Horse(randomDate.getRandomName(),
+                randomDate.getRandomPositiveNumber(),
+                randomDate.getRandomPositiveNumber()),
+                30);
         List<Horse> actualResult = new Hippodrome(expectedResult).getHorses();
 
         for (int i = 0; i < expectedResult.size(); i++) {
@@ -73,10 +81,23 @@ public class HippodromeTest extends BaseTest {
         }
     }
 
-    private List<Horse> getHorseList() {
+    @Mock
+    Horse mockHorse;
+
+    @Test
+    @DisplayName("move() call method move() on all objects")
+    @Order(6)
+    public void moveCallMethodOnAllObjects() {
+        Hippodrome hippodrome = new Hippodrome(getHorseList(mockHorse, 50));
+        hippodrome.move();
+
+        Mockito.verify(mockHorse, Mockito.times(50)).move();
+    }
+
+    private List<Horse> getHorseList(Horse object, int size) {
         List<Horse> horsesList = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            horsesList.add(new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
+        for (int i = 0; i < size; i++) {
+            horsesList.add(object);
         }
         return horsesList;
     }
