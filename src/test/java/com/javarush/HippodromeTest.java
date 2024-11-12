@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -67,7 +68,7 @@ public class HippodromeTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("getHorses return list equal to list from constructor")
+    @DisplayName("getHorses() return list equal to list from constructor")
     @Order(5)
     public void getHorsesReturnListEqualsListFromConstr() {
         List<Horse> expectedResult = getHorseList(new Horse(randomDate.getRandomName(),
@@ -92,6 +93,32 @@ public class HippodromeTest extends BaseTest {
         hippodrome.move();
 
         Mockito.verify(mockHorse, Mockito.times(50)).move();
+    }
+
+    @Test
+    @DisplayName("getWinner() return object with the big distance value")
+    @Order(7)
+    public void getWinnerReturnObjectWithBigDistanceValue() {
+        Hippodrome hippodrome = new Hippodrome(getHorseList(5));
+
+        Horse expectedResult = getObjWithBigDistanceValue(hippodrome);
+        Horse actualResult = hippodrome.getWinner();
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+    private Horse getObjWithBigDistanceValue(Hippodrome hippodrome) {
+        return hippodrome.getHorses().stream()
+                .max(Comparator.comparing(Horse::getDistance))
+                .get();
+    }
+
+    private List<Horse> getHorseList(int size) {
+        List<Horse> horsesList = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            horsesList.add(new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber()));
+        }
+        return horsesList;
     }
 
     private List<Horse> getHorseList(Horse object, int size) {
