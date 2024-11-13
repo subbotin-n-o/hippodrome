@@ -3,6 +3,8 @@ package com.javarush;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -148,5 +150,18 @@ public class HorseTest extends BaseTest {
                 .getDistance();
 
         assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    @DisplayName("move() calling getRandomDouble() with parameters")
+    @Order(13)
+    public void moveCallGetRandomDoubleWithParams() {
+        try (MockedStatic<Horse> horseMockedStatic = Mockito.mockStatic(Horse.class)) {
+
+            Horse horse = new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber());
+            horse.move();
+
+            horseMockedStatic.verify(() -> Horse.getRandomDouble(0.2, 0.9));
+        }
     }
 }
