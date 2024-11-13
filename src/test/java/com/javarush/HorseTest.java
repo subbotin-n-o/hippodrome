@@ -107,7 +107,6 @@ public class HorseTest extends BaseTest {
     @DisplayName("getName() return first parameter of constructor")
     @Order(9)
     public void getNameReturnFirstParamOfConstr() {
-
         String expectedResult = randomDate.getRandomName();
         String actualResult = new Horse(expectedResult, randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber())
                 .getName();
@@ -120,7 +119,6 @@ public class HorseTest extends BaseTest {
     @DisplayName("getSpeed() return second parameter of constructor")
     @Order(10)
     public void getSpeedReturnSecondParamOfConstr() {
-
         double expectedResult = randomDate.getRandomPositiveNumber();
         double actualResult = new Horse(randomDate.getRandomName(), expectedResult, randomDate.getRandomPositiveNumber())
                 .getSpeed();
@@ -132,7 +130,6 @@ public class HorseTest extends BaseTest {
     @DisplayName("getDistance() return third parameter of constructor")
     @Order(11)
     public void getDistanceReturnThirdParamOfConstr() {
-
         double expectedResult = randomDate.getRandomPositiveNumber();
         double actualResult = new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), expectedResult)
                 .getDistance();
@@ -144,7 +141,6 @@ public class HorseTest extends BaseTest {
     @DisplayName("getDistance() return zero if constructor with two parameters")
     @Order(12)
     public void getDistanceConstrTwoParamReturnZero() {
-
         double expectedResult = 0;
         double actualResult = new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber())
                 .getDistance();
@@ -157,11 +153,27 @@ public class HorseTest extends BaseTest {
     @Order(13)
     public void moveCallGetRandomDoubleWithParams() {
         try (MockedStatic<Horse> horseMockedStatic = Mockito.mockStatic(Horse.class)) {
-
             Horse horse = new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber());
             horse.move();
 
             horseMockedStatic.verify(() -> Horse.getRandomDouble(0.2, 0.9));
+        }
+    }
+
+    @ParameterizedTest
+    @DisplayName("move() parameterized, expecting positive result")
+    @ValueSource(doubles = {0.3, 0.5, 0.7})
+    @Order(14)
+    public void moveParameterizedPositiveResult(double randomNumber) {
+        try (MockedStatic<Horse> horseMockedStatic = Mockito.mockStatic(Horse.class)) {
+            horseMockedStatic.when(() -> Horse.getRandomDouble(0.2, 0.9)).thenReturn(randomNumber);
+            Horse horse = new Horse(randomDate.getRandomName(), randomDate.getRandomPositiveNumber(), randomDate.getRandomPositiveNumber());
+
+            double expectedResult = horse.getDistance() + horse.getSpeed() * randomNumber;
+            horse.move();
+            double actualResult = horse.getDistance();
+
+            assertEquals(expectedResult, actualResult);
         }
     }
 }
