@@ -22,3 +22,6 @@ target/
 
 # IntelliJ
 out/
+
+# JaCoCo
+.htmlReport/
